@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Blood Donation Management System - About Us">
+  <meta name="author" content="">
+  <title>About Us - Blood Donation Management System</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Blood Donation Management System</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="about.html">About Us
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="donate.html">Donate Blood</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="need.html">Need Blood</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div id="page-container" style="margin-top:50px; position: relative;min-height: 84vh;">
+    <div class="container">
+      <div id="content-wrap" style="padding-bottom:50px;">
+        <div class="row">
+          <div class="col-lg-6">
+            <h1 class="mt-4 mb-3">About Us</h1>
+            <p id="about-content">
+              <!-- This content will be loaded via JavaScript from the API -->
+              Loading about us content...
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <img class="img-fluid rounded" src="assets/images/banner_590x300.jpg" style="height:400px" alt="Blood Donation Banner">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-3 bg-danger fixed-bottom">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Blood Donation Management System 2025</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- JavaScript to load dynamic content -->
+  <script>
+    // Replace with your actual API endpoint from Render
+    const API_URL = process.env.FRONTEND_API_URL || 'http://localhost:3000';
+
+    // Function to fetch about us content
+    async function loadAboutContent() {
+      try {
+        const response = await fetch(`${API_URL}/api/pages/about`);
+        if (!response.ok) throw new Error('Failed to fetch about content');
+        const data = await response.json();
+        document.getElementById('about-content').innerHTML = data.page_data || 'About us content not available.';
+      } catch (error) {
+        console.error('Error loading about content:', error);
+        document.getElementById('about-content').innerHTML = 'Error loading content. Please try again later.';
+      }
+    }
+
+    // Load content when page loads
+    document.addEventListener('DOMContentLoaded', loadAboutContent);
+  </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+[build]
+  base = "public"
+  publish = "public"
+  command = ""
+
+[dev]
+  command = "python -m http.server 8888"
+  port = 8888
+
+[[redirects]]
+  from = "/api/*"
+  to = "https://your-render-backend.onrender.com/:splat"
+  status = 200
+  force = true
